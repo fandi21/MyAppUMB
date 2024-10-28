@@ -14,6 +14,7 @@ import com.vandee.myappumb.R;
 public class IntroActivity extends AppCompatActivity {
 
     private ViewPager mPager;
+    private int[] layouts = {R.layout.first_slide, R.layout.second_slide, R.layout.third_slide};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
