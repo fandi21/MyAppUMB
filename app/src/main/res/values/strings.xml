@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MyAppUMB</string>
+
+    <string name="slide_1_title">Universitas</string>
+    <string name="slide_1_desc">Universitas Mercu Buana merupakan salah satu Universitas terbaik di DKI Jakarta</string>
+
+    <string name="slide_2_title">Fakultas</string>
+    <string name="slide_2_desc">Universitas Mercu Buana berbagai macam Fakultas yang terdiri 12 Fakultas</string>
+
+    <string name="slide_3_title">Program Studi</string>
+    <string name="slide_3_desc">Universitas Mercu Buana berbagai macam Program Studi yang terdiri dari 26 Program Studi</string>
+
+    <string name="my_preference">"com.vandee.umb2.MyPref"</string>
+    <string name="my_preference_key">"com.vandee.umb2.MyPrefKey"</string>
+
+</resources>
