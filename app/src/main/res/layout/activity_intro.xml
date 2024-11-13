@@ -30,4 +30,32 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_marginBottom="55sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip"
+        android:textSize="16sp"
+        android:tag="btnSkip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@null"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:tag="btnNext"
+        android:textSize="16sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/white" />
+
+
 </RelativeLayout>

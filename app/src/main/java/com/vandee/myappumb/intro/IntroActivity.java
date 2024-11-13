@@ -1,7 +1,10 @@
 package com.vandee.myappumb.intro;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -15,8 +18,10 @@ import androidx.viewpager.widget.ViewPager;
 import com.vandee.myappumb.adapter.MpagerAdapter;
 
 import com.vandee.myappumb.R;
+import com.vandee.myappumb.login.LoginActivity;
+import com.vandee.myappumb.preference.PreferenceManager;
 
-public class IntroActivity extends AppCompatActivity {
+public class IntroActivity extends AppCompatActivity implements View.OnClickListener{
 
     //Set variable pager
     private ViewPager mPager;
@@ -27,17 +32,29 @@ public class IntroActivity extends AppCompatActivity {
     private LinearLayout Dots_layout;
     private ImageView[] dots;
 
+    //Set variable Skip & Next
+    private Button btnNext, btnSkip;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_intro);
 
+        if(new PreferenceManager(this).checkPreference()){
+            loadHome();
+        }
+
         mPager = (ViewPager) findViewById(R.id.viewPager);
         mpagerAdapter = new MpagerAdapter(layouts, this);
         mPager.setAdapter(mpagerAdapter);
 
         Dots_layout = (LinearLayout) findViewById(R.id.dotslayout);
+        btnSkip = (Button) findViewById(R.id.btnSkip);
+        btnNext = (Button) findViewById(R.id.btnNext);
+
+        btnSkip.setOnClickListener(this);
+        btnNext.setOnClickListener(this);
 
         createDots(0);
 
@@ -50,6 +67,13 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 createDots(position);
+                if(position == layouts.length - 1){
+                    btnNext.setText("Start");
+                    btnSkip.setVisibility(View.INVISIBLE);
+                }else {
+                    btnNext.setText("Next");
+                    btnSkip.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -77,6 +101,31 @@ public class IntroActivity extends AppCompatActivity {
             params.setMargins(4, 0, 4, 0);
 
             Dots_layout.addView(dots[i], params);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.btnNext){
+            loadNextSlide();
+        }else {
+            loadHome();
+            new PreferenceManager(this).writePreference();
+        }
+    }
+
+    private void loadHome(){
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
+
+    private void loadNextSlide(){
+        int next_slide = mPager.getCurrentItem()+1;
+        if(next_slide < layouts.length){
+            mPager.setCurrentItem(next_slide);
+        }else {
+            loadHome();
+            new PreferenceManager(this).writePreference();
         }
     }
 }
