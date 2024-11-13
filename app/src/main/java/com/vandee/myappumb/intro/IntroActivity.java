@@ -40,6 +40,23 @@ public class IntroActivity extends AppCompatActivity {
         Dots_layout = (LinearLayout) findViewById(R.id.dotslayout);
 
         createDots(0);
+
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                createDots(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     private void createDots(int current_position){
